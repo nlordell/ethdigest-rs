@@ -59,8 +59,8 @@ use core::{
 /// The procedural macro generate compile errors on invalid input:
 ///
 /// ```compile_fail
-/// # use ethaddr::digest;
-/// let _ = address!("not a valid hex digest literal!");
+/// # use ethdigest::digest;
+/// let _ = digest!("not a valid hex digest literal!");
 /// ```
 #[cfg(feature = "macros")]
 pub use ethdigest_macros::digest;
@@ -115,7 +115,7 @@ impl Digest {
         slice.try_into().unwrap()
     }
 
-    /// Creates a reference to an address from a reference to a 32-byte array.
+    /// Creates a reference to a digest from a reference to a 32-byte array.
     ///
     /// # Examples
     ///
@@ -124,8 +124,8 @@ impl Digest {
     /// ```
     /// # use ethdigest::Digest;
     /// let arrays = [[0; 32], [1; 32]];
-    /// for address in arrays.iter().map(Digest::from_ref) {
-    ///     println!("{address}");
+    /// for digest in arrays.iter().map(Digest::from_ref) {
+    ///     println!("{digest}");
     /// }
     /// ```
     pub fn from_ref(array: &[u8; 32]) -> &'_ Self {
@@ -133,7 +133,7 @@ impl Digest {
         unsafe { &*(array as *const [u8; 32]).cast::<Self>() }
     }
 
-    /// Creates a mutable reference to an address from a mutable reference to a
+    /// Creates a mutable reference to a digest from a mutable reference to a
     /// 32-byte array.
     pub fn from_mut(array: &mut [u8; 32]) -> &'_ mut Self {
         // SAFETY: `Digest` and `[u8; 32]` have the same memory layout.

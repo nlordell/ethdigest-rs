@@ -22,14 +22,14 @@ included with the crate.
 
 ```toml
 [dependencies]
-ethaddr = { version = "*", default-features = false }
+ethdigest = { version = "*", default-features = false }
 ```
 
 > I want runtime Keccak-256 hashing utilities!
 
 ```toml
 [dependencies]
-ethaddr = { version = "*", features = ["keccak"] }
+ethdigest = { version = "*", features = ["keccak"] }
 ```
 
 > I want a macro for compile-time `Digest` literals and compilt-time Keccak-256
@@ -37,5 +37,5 @@ ethaddr = { version = "*", features = ["keccak"] }
 
 ```toml
 [dependencies]
-ethaddr = { version = "*", features = ["macros", "serde"] }
+ethdigest = { version = "*", features = ["macros", "serde"] }
 ```
