@@ -12,7 +12,7 @@
 //! - **`keccak`**: Include Keccak-256 hasing utilities (provided by the
 //! [`sha3`] crate).
 //! - **`macros`**: Adds a [`digest`] procedural macro for compile-time
-//! digest literals and a [`hash`] procedural macro for compile-time hashing.
+//! digest literals and a [`keccak`] procedural macro for compile-time hashing.
 //! - **`serde`**: Serialization traits for the [`serde`](::serde) crate. Note
 //! that the implementation is very much geared towards JSON serialiazation with
 //! `serde_json`.
@@ -73,14 +73,14 @@ pub use ethdigest_macros::digest;
 /// Basic usage:
 ///
 /// ```
-/// # use ethdigest::{hash, Digest};
+/// # use ethdigest::{keccak, Digest};
 /// assert_eq!(
 ///     Digest::of("Hello Ethereum!"),
-///     hash!("Hello Ethereum!"),
+///     keccak!("Hello Ethereum!"),
 /// );
 /// ```
 #[cfg(feature = "macros")]
-pub use ethdigest_macros::hash;
+pub use ethdigest_macros::keccak;
 
 /// A 32-byte digest.
 #[repr(transparent)]

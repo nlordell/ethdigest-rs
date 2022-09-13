@@ -1,7 +1,7 @@
 //! Procedural macro for Ethereum digests and hashing.
 //!
 //! See [`ethdigest::digest`](https://docs.rs/ethdigest/latest/ethdigest/macro.digest.html)
-//! and [`ethdigest::hash`](https://docs.rs/ethdigest/latest/ethdigest/macro.hash.html)
+//! and [`ethdigest::keccak`](https://docs.rs/ethdigest/latest/ethdigest/macro.keccak.html)
 //! documentation for more information.
 
 extern crate proc_macro;
@@ -21,8 +21,8 @@ pub fn digest(input: TokenStream) -> TokenStream {
 }
 
 #[proc_macro]
-pub fn hash(input: TokenStream) -> TokenStream {
-    match DigestLiteral::generate_hash(input) {
+pub fn keccak(input: TokenStream) -> TokenStream {
+    match DigestLiteral::generate_keccak(input) {
         Ok(digest) => digest.into_tokens(),
         Err(err) => err.into_tokens(),
     }
@@ -45,7 +45,7 @@ impl DigestLiteral {
         Ok(Self(bytes))
     }
 
-    fn generate_hash(input: TokenStream) -> Result<Self, CompileError> {
+    fn generate_keccak(input: TokenStream) -> Result<Self, CompileError> {
         let input = Input::parse(input)?;
 
         let mut hasher = Keccak256::new();
